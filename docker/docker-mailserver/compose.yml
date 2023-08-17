@@ -6,7 +6,7 @@ services:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
     container_name: mailserver
     hostname: mail.buntin.xyz
-    env_file: mailserver.env
+    env_file: /root/app_config/docker/docker-mailserver/mailserver.env
     ports:
       - "25:25"    # SMTP  (explicit TLS => STARTTLS)
       - "143:143"  # IMAP4 (explicit TLS => STARTTLS)
@@ -14,10 +14,10 @@ services:
       - "587:587"  # ESMTP (explicit TLS => STARTTLS)
       - "993:993"  # IMAP4 (implicit TLS)
     volumes:
-      - ./docker-data/dms/mail-data/:/var/mail/
-      - ./docker-data/dms/mail-state/:/var/mail-state/
-      - ./docker-data/dms/mail-logs/:/var/log/mail/
-      - ./docker-data/dms/config/:/tmp/docker-mailserver/
+      - /root/app_config/docker/docker-mailserver/docker-data/dms/mail-data/:/var/mail/
+      - /root/app_config/docker/docker-mailserver/docker-data/dms/mail-state/:/var/mail-state/
+      - /root/app_config/docker/docker-mailserver/docker-data/dms/mail-logs/:/var/log/mail/
+      - /root/app_config/docker/docker-mailserver/docker-data/dms/config/:/tmp/docker-mailserver/
       - /etc/localtime:/etc/localtime:ro
       - /etc/letsencrypt:/etc/letsencrypt
     restart: always
