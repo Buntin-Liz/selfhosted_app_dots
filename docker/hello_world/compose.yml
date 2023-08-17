@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web-test:
+    image: crccheck/hello-world
+    ports:
+      - "15000:8000"
+    restart: "no"
